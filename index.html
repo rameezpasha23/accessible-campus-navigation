@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CampusPath — Accessible Campus Navigation</title>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="CampusPath home">
+      <span class="brand-mark">↗</span>
+      <span><strong>CampusPath</strong><small>Accessible Campus Navigation</small></span>
+    </a>
+    <span class="prototype-badge">HACKATHON MVP</span>
+  </header>
+
+  <main class="layout">
+    <section class="sidebar">
+      <div class="intro">
+        <p class="eyebrow">YOUR CAMPUS, MADE EASIER</p>
+        <h1>Find your way.<br><span>Feel at home.</span></h1>
+        <p class="muted">Find departments, labs, offices and accessible routes around campus.</p>
+      </div>
+
+      <label class="field-label" for="searchInput">Search campus locations</label>
+      <div class="search-wrap">
+        <span aria-hidden="true">⌕</span>
+        <input id="searchInput" type="search" placeholder="Try “CSE Department”" autocomplete="off">
+        <button id="clearSearch" class="clear-btn" title="Clear search" aria-label="Clear search">×</button>
+      </div>
+      <div id="searchResults" class="search-results" hidden></div>
+
+      <div class="section-heading">
+        <h2>Explore places</h2>
+        <span id="placeCount" class="count-pill">0 places</span>
+      </div>
+      <div class="filters" id="filters">
+        <button class="filter active" data-category="All">All</button>
+        <button class="filter" data-category="Academic">Academic</button>
+        <button class="filter" data-category="Facilities">Facilities</button>
+        <button class="filter" data-category="Office">Offices</button>
+      </div>
+      <div id="placeList" class="place-list"></div>
+
+      <div class="route-card">
+        <div class="section-heading"><h2>Plan a route</h2><span class="route-icon">⌁</span></div>
+        <label class="field-label" for="startSelect">Starting point</label>
+        <select id="startSelect"></select>
+        <label class="field-label" for="destinationSelect">Destination</label>
+        <select id="destinationSelect"></select>
+        <label class="access-toggle">
+          <input type="checkbox" id="accessibleToggle">
+          <span class="toggle-ui"></span>
+          <span><strong>Accessibility mode</strong><small>Prefer verified step-free routes</small></span>
+        </label>
+        <button id="routeBtn" class="primary-btn">Show directions <span>→</span></button>
+        <div id="routeMessage" class="route-message" aria-live="polite">Choose a start and destination to plan your journey.</div>
+      </div>
+
+      <div class="notice">
+        <strong>Demo data</strong>
+        <p>Map pins and paths are sample locations for the prototype, not verified campus coordinates or accessible routes.</p>
+      </div>
+    </section>
+
+    <section class="map-section" aria-label="Interactive campus map">
+      <div class="map-toolbar">
+        <div class="map-title"><span class="live-dot"></span><div><strong>Campus map</strong><small id="mapSubtitle">Explore sample locations</small></div></div>
+        <button id="locateBtn" class="secondary-btn">◎ Use my location</button>
+      </div>
+      <div id="map"></div>
+      <div class="map-legend">
+        <span><i class="legend-dot academic"></i> Academic</span>
+        <span><i class="legend-dot facilities"></i> Facilities</span>
+        <span><i class="legend-dot office"></i> Offices</span>
+        <span><i class="legend-line"></i> Demo route</span>
+      </div>
+      <div class="map-footer"><span>⌖</span> Tip: select a place to view details, or use “Plan a route”.</div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
